@@ -1,20 +1,26 @@
 package oop.user;
 
+import java.util.Base64;
 import java.util.List;
 
 public class User {
     private String username;
     private String email;
     private String password;
-    //todo: mã hóa mật khẩu
     private List<String> permissions;
 
     public User(String username, String email, String password, List<String> permissions) {
         this.username = username;
         this.email = email;
-        this.password = password;
+        this.password =  hashPassword(password);;
         this.permissions = permissions;
     }
+
+    //Mã hóa bằng Base-64
+    private String hashPassword(String password) {
+        return Base64.getEncoder().encodeToString(password.getBytes());
+    }
+
 
     public boolean checkPassword(String password) {
         return this.password.equals(password);

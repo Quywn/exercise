@@ -11,9 +11,9 @@ public class Order {
     private List<Product> products;
     private Map<Product, Integer> orderedProductsList;
     private double totalPrice;
-    private String status; // ToDo: Có set cứng 3 status? Đang xử lý, Đã giao hàng, Đã hủy
+    private Status status;
 
-    public String updateStatus(String status) {
+    public Status updateStatus(Status status) {
         return this.status = status;
     }
 
@@ -49,7 +49,7 @@ public class Order {
         this.totalPrice = totalPrice;
     }
 
-    public String getStatus() {
+    public Status getStatus() {
         return status;
     }
 

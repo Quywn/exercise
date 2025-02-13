@@ -7,10 +7,17 @@ import java.util.Date;
 public class Review {
     private String user;
     private Product product;
-    private String rating; //Todo: Pattern: 1 -> 5
+    private int rating;
     private String content;
-    private Date created_at; //Todo: format date?
+    private Date created_at;
 
+    //Trong Spring dùng @Pattern
+    public void setRating(int rating) {
+        if (rating < 1 || rating > 5) {
+            throw new IllegalArgumentException("Rating must be between 1 and 5!");
+        }
+        this.rating = rating;
+    }
     @Override
     public String toString() {
         return "Review{" +
