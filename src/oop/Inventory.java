@@ -5,11 +5,11 @@ import oop.product.Product;
 
 public class Inventory {
 
-    int check_stock(Product product) {
+    int checkStock(Product product) {
         return product.getStock();
     }
 
-    Product restock(Product product, int quantity) {
+    Product reStock(Product product, int quantity) {
         if (quantity > 0) {
             product.setStock(quantity);
             System.out.println("Restocked " + quantity + " of " + product.getName() + ". Total stock: " + product.getStock());
@@ -20,7 +20,7 @@ public class Inventory {
         }
     }
 
-    void deduct_stock(Order order) {
+    void deductStock(Order order) {
 
         order.getOrderedProductsList()
                 .forEach((product, quantity) -> {
