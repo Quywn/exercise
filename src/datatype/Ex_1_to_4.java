@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
-public class Ex_1_to_6 {
+public class Ex_1_to_4 {
 
     public static void main(String[] args) {
         final double INCHES2METER = 0.0254;
@@ -44,11 +44,6 @@ public class Ex_1_to_6 {
 
         System.out.printf("Speed in m/s is %.8f%n", speedInMetersPerSecond);
         System.out.printf("Speed in km/h is %.8f%n", speedInKilometersPerHour);
-
-        //Todo:
-        //Exercise 05
-
-        //Exercise 06
 
         scanner.close();
 
