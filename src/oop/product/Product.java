@@ -1,6 +1,8 @@
 package oop.product;
 
 
+import java.util.Objects;
+
 public class Product {
     private String name;
     private double price;
@@ -13,8 +15,17 @@ public class Product {
         this.category = category;
         this.stock = stock;
     }
-    public Product() {
 
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Product product = (Product) o;
+        return Double.compare(price, product.price) == 0 && stock == product.stock && Objects.equals(name, product.name) && Objects.equals(category, product.category);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, price, category, stock);
     }
 
     public String toString() {
