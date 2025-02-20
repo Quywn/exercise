@@ -1,6 +1,7 @@
 package oop;
 
 import oop.product.Product;
+import oop.user.User;
 
 import java.time.LocalDateTime;
 import java.util.Date;
@@ -10,14 +11,14 @@ import java.util.Objects;
 
 public class Order {
     private String orderId;
-    private String user;
+    private User user;
     private List<Product> products;
     private Map<Product, Integer> orderedProductsList;
     private double totalPrice;
     private Status status;
     private LocalDateTime orderDatetime;
 
-    public Order(String orderId, String user, List<Product> products, double totalPrice, Status status, LocalDateTime orderDatetime) {
+    public Order(String orderId, User user, List<Product> products, double totalPrice, Status status, LocalDateTime orderDatetime) {
         this.orderId = orderId;
         this.user = user;
         this.products = products;
@@ -38,11 +39,11 @@ public class Order {
         this.orderId = orderId;
     }
 
-    public String getUser() {
+    public User getUser() {
         return user;
     }
 
-    public void setUser(String user) {
+    public void setUser(User user) {
         this.user = user;
     }
 

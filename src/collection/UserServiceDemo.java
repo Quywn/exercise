@@ -1,6 +1,10 @@
 package collection;
 
+import oop.Review;
 import oop.user.User;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 
@@ -15,7 +19,12 @@ public class UserServiceDemo {
         System.out.println("Email "+ email +"đã tồn tại (T/F): "+ existEmail );
 
         //Ex14. Dùng HashMap<User, List<Review>> để quản lý danh sách đánh giá của từng người dùng.
-
+        List<Review> reviews = new DataTest().initReviews();
+        HashMap<User, List<Review>> reviewByUser = new HashMap<>();
+        for (Review review : reviews) {
+            reviewByUser.computeIfAbsent(review.getUser(), list -> new ArrayList<>()).add(review);
+        }
+        System.out.println("Danh sách đánh giá theo người dùng: " + reviewByUser);
 
     }
 }

@@ -11,6 +11,8 @@ public class ProductServiceDemo {
         //Ex1. Lưu danh sách sản phẩm, thêm, xoá và hiển thị danh sách sản phẩm.
         Product pizza = new Product("Pizza", "BO5",6, "Fast Food", 1);
         products.add(pizza);
+        products.add(pizza);
+        products.add(pizza);
         products.remove(products.size()-2);
         System.out.println("Danh sách sản phẩm:");
         System.out.println(products);
@@ -28,11 +30,11 @@ public class ProductServiceDemo {
         System.out.println(sortedByPrice(products));
 
         //Ex5. Quản lý giỏ hàng bằng LinkedList
-        LinkedList<Product> cart = new LinkedList<>(products);
-        cart.add(pizza);
-        cart.remove(pizza);
-        System.out.println("Sản phẩm đầu tiên trong giỏ hàng: "+ cart.getFirst());
-        System.out.println("Sản phẩm cuối cùng trong giỏ hàng: "+ cart.getLast());
+        LinkedList<Product> cartLinkedList = new LinkedList<>(products);
+        cartLinkedList.add(pizza);
+        cartLinkedList.remove(pizza);
+        System.out.println("Sản phẩm đầu tiên trong giỏ hàng: "+ cartLinkedList.getFirst());
+        System.out.println("Sản phẩm cuối cùng trong giỏ hàng: "+ cartLinkedList.getLast());
 
         //Ex6. Dùng Hash set Loại bỏ sản phẩm trùng lặp trong danh sách
         HashSet<Product> setProduct = new HashSet<>(products);
@@ -40,8 +42,8 @@ public class ProductServiceDemo {
         System.out.println(setProduct);
 
         //Ex8. Lưu sản phẩm theo danh mục bảng chữ cái
-        TreeSet<Product> treeSet = new TreeSet<>(products);
-        System.out.println("Danh mục sản phẩm trong hệ thống (theo thứ tự bảng chữ cái):" + treeSet);
+        TreeSet<Product> treeSetA_Z = new TreeSet<>(products);
+        System.out.println("Danh mục sản phẩm trong hệ thống (theo thứ tự bảng chữ cái):" + treeSetA_Z);
 
         //Ex10. Sử dụng Set<Product> để lưu danh sách yêu thích của khách hàng. Check 1 sản phẩm có trong ds hay không
         Set<Product> favoriteSet = new HashSet<>(products);
@@ -58,16 +60,29 @@ public class ProductServiceDemo {
         System.out.println("Số lượng sản phẩm còn trong kho theo mã sản phẩm: " + productQuantity);
 
         //Ex13. Sử dụng HashMap<Product, Integer> để lưu giỏ hàng với sản phẩm và số lượng.
-
+        HashMap<Product, Integer> cartHashMap = new HashMap<>();
+        for (Product p : products) {
+            if (cartHashMap.containsKey(p)) {
+                cartHashMap.put(p, cartHashMap.get(p) + 1);
+            } else {
+                cartHashMap.put(p, 1);
+            }
+        }
+        System.out.println("Lưu HashMap sản phẩm và số lượng:"+ cartHashMap);
 
         //Ex15. Sử dụng TreeMap<Double, List<Product>> để lưu sản phẩm theo giá, giúp lấy danh sách sản phẩm theo khoảng giá nhanh hơn.
-
-        //Ex18. Dùng HashMap<Product, Integer> để đếm số lần sản phẩm được đặt hàng. Trả về danh sách 5 sản phẩm được mua nhiều nhất.
+        TreeMap<Double, List<Product>> treeMapPrice = new TreeMap<>();
+        for (Product p : products) {
+            treeMapPrice.computeIfAbsent(p.getPrice(), listP -> new ArrayList<>()).add(p);
+        }
+        System.out.println("Danh sách sản phẩm từ 1$ đến 3$: "+treeMapPrice.subMap(1.0, 3.0));
 
         //Ex19. Dùng Map<String, Set<String>> để lưu danh mục con của mỗi danh mục cha. Ví dụ: {"Điện tử" -> {"Điện thoại", "Laptop"}}.
-
-        //Ex20. Dùng LinkedList<String> để lưu lịch sử tìm kiếm sản phẩm. Chỉ giữ tối đa 10 tìm kiếm gần nhất, nếu vượt quá thì xoá phần tử cũ nhất.
-
+        Map<String, Set<String>> indexCategory = new HashMap<>();
+        for (Product p : products) {
+            indexCategory.computeIfAbsent(p.getCategory(), set -> new HashSet<>()).add(p.getName());
+        }
+        System.out.println("Danh sách sản phẩm theo danh mục: " + indexCategory);
     }
 
     public static Product maxPriceProduct(List<Product> products) {
