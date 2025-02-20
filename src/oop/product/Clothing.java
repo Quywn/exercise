@@ -4,10 +4,11 @@ public class Clothing extends Product {
     private String size;
     private String material;
 
-    public Clothing(String name, double price, String category, int stock) {
-        super(name, price, category, stock);
+    public Clothing(String name, String productId, double price, String category, int stock, String size, String material) {
+        super(name, productId, price, category, stock);
+        this.size = size;
+        this.material = material;
     }
-
 
     @Override
     public String toString() {
