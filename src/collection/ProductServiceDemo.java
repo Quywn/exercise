@@ -88,7 +88,7 @@ public class ProductServiceDemo {
     public static Product maxPriceProduct(List<Product> products) {
         Product maxPriceProduct = null;
         for (Product product : products) {
-            if (maxPriceProduct == null) {
+            if (maxPriceProduct == null || product.getPrice() > maxPriceProduct.getPrice()) {
                 maxPriceProduct = product;
             }
         }
