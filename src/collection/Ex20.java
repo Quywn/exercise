@@ -1,6 +1,6 @@
 package collection;
 
-import java.util.ArrayList;
+
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -21,7 +21,7 @@ public class Ex20 {
     }
 
     static boolean isOverdose(List<String> productList) {
-        return productList.size() > MAX_SIZE;
+        return productList.size() >= MAX_SIZE;
     }
 
 }
