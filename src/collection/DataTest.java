@@ -8,10 +8,7 @@ import oop.user.User;
 
 import java.time.LocalDateTime;
 import java.time.Month;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
+import java.util.*;
 
 
 public class DataTest {
@@ -32,11 +29,27 @@ public class DataTest {
     Review review2 = new Review(user2, hamburger, 3, "Not bad", LocalDateTime.of(2025, Month.FEBRUARY, 20, 11, 20, 17));
     Review review3 = new Review(user3, bread, 5, "Perfect",LocalDateTime.of(2025, Month.FEBRUARY, 20, 11, 20, 20));
 
-    List<Product> products1 = initProductsTest1();
-    Order order1 = new Order("O1",user1, products1,12312, Status.COMPLETED, LocalDateTime.of(2025, Month.FEBRUARY, 20, 11, 20, 15));
-    Order order2 = new Order("O2",user2, products1,12312, Status.COMPLETED, LocalDateTime.of(2025, Month.FEBRUARY, 20, 11, 20, 17));
-    Order order3 = new Order("O3",user2, products,12312, Status.COMPLETED, LocalDateTime.of(2025, Month.FEBRUARY, 20, 11, 20, 20));
-    Order order4 = new Order("O4",user3, products,12312, Status.COMPLETED, LocalDateTime.of(2025, Month.FEBRUARY, 20, 11, 20, 22));
+    Map<Product, Integer> orderedProductsList1 = initOrderedProductsList1();
+    Map<Product, Integer> orderedProductsList2 = initOrderedProductsList2();
+    Order order1 = new Order("O1",user1,null, orderedProductsList1,12312, Status.COMPLETED, LocalDateTime.of(2025, Month.FEBRUARY, 20, 11, 20, 15));
+    Order order2 = new Order("O2",user2,null, orderedProductsList2,12312, Status.COMPLETED, LocalDateTime.of(2025, Month.FEBRUARY, 20, 11, 20, 17));
+    Order order3 = new Order("O3",user2,null, orderedProductsList1,12312, Status.COMPLETED, LocalDateTime.of(2025, Month.FEBRUARY, 20, 11, 20, 20));
+    Order order4 = new Order("O4",user3,null, orderedProductsList2,12312, Status.COMPLETED, LocalDateTime.of(2025, Month.FEBRUARY, 20, 11, 20, 22));
+
+    public Map<Product, Integer> initOrderedProductsList1() {
+        Map<Product, Integer> orderProductList = new HashMap<>();
+        for (Product p: initProducts()) {
+            orderProductList.put(p, 1);
+        }
+        return orderProductList;
+    }
+    public Map<Product, Integer> initOrderedProductsList2() {
+        Map<Product, Integer> orderProductList = new HashMap<>();
+        for (Product p: initProductsTest1()) {
+            orderProductList.put(p, 1);
+        }
+        return orderProductList;
+    }
 
     public List<Product> initProducts() {
         products.addAll(Arrays.asList(hamburger, lemon, bread, meat, beef,chicken));

@@ -45,11 +45,11 @@ public class OrderServiceDemo {
         //Ex18. Dùng HashMap<Product, Integer> để đếm số lần sản phẩm được đặt hàng. Trả về danh sách 5 sản phẩm được mua nhiều nhất.
         HashMap<Product, Integer> orderCount = new HashMap<>();
         for (Order o : completedOrders) {
-            for (Product p : o.getProducts()) {
-                if (orderCount.containsKey(p)) {
-                    orderCount.put(p, orderCount.get(p) + 1);
+            for (Map.Entry<Product, Integer> entry: o.getOrderedProductsList().entrySet()) {
+                if (orderCount.containsKey(entry.getKey())) {
+                    orderCount.put(entry.getKey(), orderCount.get(entry.getKey()) + entry.getValue());
                 } else {
-                    orderCount.put(p, 1);
+                    orderCount.put(entry.getKey(), 1);
                 }
             }
         }

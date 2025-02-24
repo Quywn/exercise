@@ -18,10 +18,11 @@ public class Order {
     private Status status;
     private LocalDateTime orderDatetime;
 
-    public Order(String orderId, User user, List<Product> products, double totalPrice, Status status, LocalDateTime orderDatetime) {
+    public Order(String orderId, User user, List<Product> products, Map<Product, Integer> orderedProductsList, double totalPrice, Status status, LocalDateTime orderDatetime) {
         this.orderId = orderId;
         this.user = user;
         this.products = products;
+        this.orderedProductsList = orderedProductsList;
         this.totalPrice = totalPrice;
         this.status = status;
         this.orderDatetime = orderDatetime;
