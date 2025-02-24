@@ -15,7 +15,7 @@ public class UserServiceDemo {
         HashSet<User> usersSet = new HashSet<>(users);
         String email = "quyenvtn";
         boolean existEmail = usersSet.stream()
-                .anyMatch(user -> user.getEmail().equals("email"));
+                .anyMatch(user -> user.getEmail().equals(email));
         System.out.println("Email "+ email +"đã tồn tại (T/F): "+ existEmail );
 
         //Ex14. Dùng HashMap<User, List<Review>> để quản lý danh sách đánh giá của từng người dùng.
